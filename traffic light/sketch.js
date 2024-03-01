@@ -1,5 +1,7 @@
 // Traffic Light 
 
+const { StringDict } = require("../../../../../.vscode/extensions/wmcicompsci.cs30-p5-1.7.3/p5types");
+
 let state = "red";
 let lastTimeSwitched = 0;
 let redDuration = 2000;
@@ -46,17 +48,17 @@ function drawCorrectLight() {
 
 function drawGreenLight() {
   fill("green");
-  ellipse(width / 2, height / 2 + 65, 50, 50); //bottom
+  ellipse(width / 2, height / 2 + 65, 50, 50)
 }
 
 function drawYellowLight() {
   fill("yellow");
-  ellipse(width / 2, height / 2, 50, 50); //middle
+  ellipse(width / 2, height / 2, 50, 50)
 }
 
 function drawRedLight() {
   fill("red");
-  ellipse(width / 2, height / 2 - 65, 50, 50); //top
+  ellipse(width / 2, height / 2 - 65, 50, 50)
 }
 
 function drawOutlineOfLights() {
