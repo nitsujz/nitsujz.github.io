@@ -1,26 +1,27 @@
 // Interactive scene
 // Justin Nguyen
 
-var gridSize
-var space
-var snake
-var dir
+// eslint-disable-next-line no-var
+let gridSize;
+let space;
+let snake;
+let dir;
+let food;
 
 document.addEventListener("keydown", function(k) {
-  dir = k.code
-})
-  
+  dir = k.code;
+});
 
 function setup() {
   createCanvas(1000, 1000);
-  rectMode(CENTER)
+  rectMode(CENTER);
   frameRate(10);
 
   gridSize = 20;
   space = width/gridSize;
 
- snake = new Snake();
-
+  snake = new Snake();
+  food = new Food();
 }
 
 function draw() {
@@ -28,11 +29,15 @@ function draw() {
 
   snake.move();
   snake.edges();
+  snake.eat();
+  snake.tail();
   snake.show();
+
+  food.show();
   
   noFill();
-  stroke(10, 20, 30);
-  strokeWeight(space)
+  stroke(10, 200, 50);
+  strokeWeight(space);  
 
   rect(width/2, height/2, width, height);
 }
@@ -40,6 +45,10 @@ function draw() {
 class Snake{
   constructor() {
     this.pos = createVector(500, 500);
+
+    this.length = 1;
+
+    this.oldPos = [this.pos];
   }
 
   move() {
@@ -54,7 +63,7 @@ class Snake{
     }
     else if (dir === "ArrowDown") {
       this.pos.y += space;
-  }
+    }
   }
 
   edges() {
@@ -72,9 +81,57 @@ class Snake{
     }
   }
 
+  eat() {
+    if (this.pos.x === food.x && this.pos.y === food.y) {
+      food.newPosition();
+
+      this.length += 1;
+    }
+  }
+
+  tail() {
+    this.oldPos.push(this.pos.copy());
+
+    if (this.oldPos.length > this.length) {
+      this.oldPos.splice(0, 1);
+    }
+  }
+
   show () {
     noStroke();
-    fill(255);
-    rect(this.pos.x, this.pos.y, space);
+    fill(0, 255, 0);
+    for (let i = 0; i < this.oldPos.length; i++) {
+      rect(this.oldPos[i].x, this.oldPos[i].y, space - 5);
+    }
+  }
+}
+
+class Food {
+  constructor() {
+    this.x = floor(random(1, gridSize)) * space;
+    this.y = floor(random(1, gridSize)) * space;
+  }
+
+  newPosition() {
+    let newX = floor(random(1, gridSize)) * space;
+    let newY = floor(random(1, gridSize)) * space;
+
+    for (let i = 0; i < snake.oldPos.length; i++) {
+      if (newX === snake.oldPos[i].x && newY === snake.oldPos[i].y) {
+        break;
+      }
+      else {
+        if (i === snake.oldPos.length - 1) {
+          this.x = newX;
+          this.y = newY;
+        }
+      }
+    }
+  }
+
+  show() {
+    noStroke();
+    fill(255, 0, 0);
+    rect(this.x, this.y, space / 2);
   }
 }
