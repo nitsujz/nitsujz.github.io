@@ -1,12 +1,12 @@
 // Interactive scene
 // Justin Nguyen
 
-// eslint-disable-next-line no-var
 let gridSize;
 let space;
 let snake;
 let dir;
 let food;
+let score;
 
 document.addEventListener("keydown", function(k) {
   dir = k.code;
@@ -34,11 +34,10 @@ function draw() {
   snake.show();
 
   food.show();
-  
-  noFill();
-  stroke(10, 200, 50);
-  strokeWeight(space);  
+  score.show();
 
+  noFill();
+  noStroke();
   rect(width/2, height/2, width, height);
 }
 
@@ -84,7 +83,6 @@ class Snake{
   eat() {
     if (this.pos.x === food.x && this.pos.y === food.y) {
       food.newPosition();
-
       this.length += 1;
     }
   }
@@ -99,7 +97,7 @@ class Snake{
 
   show () {
     noStroke();
-    fill(0, 255, 0);
+    fill("violet");
     for (let i = 0; i < this.oldPos.length; i++) {
       rect(this.oldPos[i].x, this.oldPos[i].y, space - 5);
     }
@@ -109,7 +107,7 @@ class Snake{
 class Food {
   constructor() {
     this.x = floor(random(1, gridSize)) * space;
-    this.y = floor(random(1, gridSize)) * space;
+    this.y = floor(random(2, gridSize)) * space;
   }
 
   newPosition() {
@@ -131,7 +129,21 @@ class Food {
 
   show() {
     noStroke();
-    fill(255, 0, 0);
+    fill("black");
     rect(this.x, this.y, space / 2);
+  }
+}
+
+class Score {
+  constructor() {
+    this.x = width/2;
+    this.y = 800;
+  }
+
+  show() {
+    noStroke();
+    for (let i = 0; i < this.oldPos.length; i++) {
+      
+    }
   }
 }

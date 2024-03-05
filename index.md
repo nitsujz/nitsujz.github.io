@@ -4,4 +4,4 @@
 - [Traffic lights](traffic light)
 
 ## Projects
-- [Interactive Scene] (scene)
+- [Interactive scene](scene)
