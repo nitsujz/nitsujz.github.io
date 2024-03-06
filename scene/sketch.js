@@ -1,24 +1,25 @@
 // Interactive scene
 // Justin Nguyen
 
-// eslint-disable-next-line no-var
 let gridSize;
 let space;
 let snake;
 let dir;
 let food;
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 2e51c11 (added changes to interactive scene)
+let img;
 
 document.addEventListener("keydown", function(k) {
   dir = k.code;
 });
 
+function preload() {
+  img = loadImage("game_over.png");
+}
+
 function setup() {
   createCanvas(1000, 1000);
   rectMode(CENTER);
+  imageMode(CENTER);
   frameRate(10);
 
   gridSize = 20;
@@ -31,22 +32,20 @@ function setup() {
 function draw() {
   background("black");
 
-  snake.move();
-  snake.edges();
-  snake.eat();
-  snake.tail();
-  snake.show();
+  if (!snake.dead)  {
+    snake.move();
+    snake.edges();
+    snake.eat();
+    snake.tail();
+    snake.show();
+    food.show();
+  }
+  else {
+    image(img, width / 2, height / 2);
+  }
 
-  food.show();
-  
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 2e51c11 (added changes to interactive scene)
   noFill();
-  stroke(10, 200, 50);
-  strokeWeight(space);  
-
+  noStroke();
   rect(width/2, height/2, width, height);
 }
 
@@ -57,6 +56,8 @@ class Snake{
     this.length = 1;
 
     this.oldPos = [this.pos];
+
+    this.dead = false;
   }
 
   move() {
@@ -75,17 +76,8 @@ class Snake{
   }
 
   edges() {
-    if (this.pos.x === 0) {
-      this.pos.x = width - space;
-    }
-    else if (this.pos.x === width) {
-      this.pos.x = space;
-    }
-    else if (this.pos.y === 0) {
-      this.pos.y = height - space;
-    }
-    else if (this.pos.y === height) {
-      this.pos.y = space;
+    if (this.pos.x === 0 || this.pos.x === width || this.pos.y === 0 || this.pos.y === height) {
+      this.dead = true;
     }
   }
 
@@ -142,9 +134,5 @@ class Food {
     fill(255, 0, 0);
     rect(this.x, this.y, space / 2);
   }
-<<<<<<< HEAD
-}
 
-=======
 }
->>>>>>> parent of 2e51c11 (added changes to interactive scene)
