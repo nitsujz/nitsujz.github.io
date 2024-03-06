@@ -48,17 +48,17 @@ function drawCorrectLight() {
 
 function drawGreenLight() {
   fill("green");
-  ellipse(width / 2, height / 2 + 65, 50, 50);
+  ellipse(width / 2, height / 2 + 65, 50, 50)
 }
 
 function drawYellowLight() {
   fill("yellow");
-  ellipse(width / 2, height / 2, 50, 50);
+  ellipse(width / 2, height / 2, 50, 50)
 }
 
 function drawRedLight() {
   fill("red");
-  ellipse(width / 2, height / 2 - 65, 50, 50);
+  ellipse(width / 2, height / 2 - 65, 50, 50)
 }
 
 function drawOutlineOfLights() {
