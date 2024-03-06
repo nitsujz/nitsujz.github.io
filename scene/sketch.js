@@ -6,15 +6,10 @@ let space;
 let snake;
 let dir;
 let food;
-let img;
 
 document.addEventListener("keydown", function(k) {
   dir = k.code;
 });
-
-function preload() {
-  img = loadImage("game_over.png");
-}
 
 function setup() {
   createCanvas(1000, 1000);
@@ -32,17 +27,12 @@ function setup() {
 function draw() {
   background("black");
 
-  if (!snake.dead)  {
-    snake.move();
-    snake.edges();
-    snake.eat();
-    snake.tail();
-    snake.show();
-    food.show();
-  }
-  else {
-    image(img, width / 2, height / 2);
-  }
+  snake.move();
+  snake.edges();
+  snake.eat();
+  snake.tail();
+  snake.show();
+  food.show();
 
   noFill();
   noStroke();
@@ -134,5 +124,4 @@ class Food {
     fill(255, 0, 0);
     rect(this.x, this.y, space / 2);
   }
-
 }

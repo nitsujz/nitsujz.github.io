@@ -1,8 +1,8 @@
 # My Comp Sci 30 Stuff
 
 ## Demos
-- [Traffic lights](traffic light)
-- [Bouncing ball](bouncing ball)
+- [Traffic Lights](trafficlight)
+- [Bouncing Ball](bouncingball)
 
 ## Projects
 - [Interactive Scene](scene)
