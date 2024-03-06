@@ -6,7 +6,7 @@ let space;
 let snake;
 let dir;
 let food;
-let score;
+
 
 document.addEventListener("keydown", function(k) {
   dir = k.code;
@@ -34,7 +34,7 @@ function draw() {
   snake.show();
 
   food.show();
-  score.show();
+  
 
   noFill();
   noStroke();
@@ -134,16 +134,3 @@ class Food {
   }
 }
 
-class Score {
-  constructor() {
-    this.x = width/2;
-    this.y = 800;
-  }
-
-  show() {
-    noStroke();
-    for (let i = 0; i < this.oldPos.length; i++) {
-      
-    }
-  }
-}
