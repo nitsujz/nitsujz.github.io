@@ -1,4 +1,4 @@
-// Project Title
+// Bouncing ball
 // Your Name
 // Date
 //

@@ -14,7 +14,6 @@ document.addEventListener("keydown", function(k) {
 function setup() {
   createCanvas(1000, 1000);
   rectMode(CENTER);
-  imageMode(CENTER);
   frameRate(10);
 
   gridSize = 20;
@@ -26,7 +25,6 @@ function setup() {
 
 function draw() {
   background("black");
-
   snake.move();
   snake.edges();
   snake.eat();
@@ -89,7 +87,7 @@ class Snake{
 
   show () {
     noStroke();
-    fill(0, 255, 0);
+    fill(0, 255, 30);
     for (let i = 0; i < this.oldPos.length; i++) {
       rect(this.oldPos[i].x, this.oldPos[i].y, space - 5);
     }
