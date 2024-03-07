@@ -1,6 +1,7 @@
 // Interactive scene
 // Justin Nguyen
 
+//make variables
 let gridSize;
 let space;
 let snake;
@@ -12,6 +13,8 @@ document.addEventListener("keydown", function(k) {
 });
 
 function setup() {
+
+  //set up screen
   createCanvas(1000, 1000);
   rectMode(CENTER);
   frameRate(10);
@@ -25,18 +28,21 @@ function setup() {
 
 function draw() {
   background("black");
+
+  //call character functions
   snake.move();
   snake.edges();
   snake.eat();
   snake.tail();
   snake.show();
   food.show();
-
+  
   noFill();
   noStroke();
   rect(width/2, height/2, width, height);
 }
 
+//character
 class Snake{
   constructor() {
     this.pos = createVector(500, 500);
@@ -72,7 +78,6 @@ class Snake{
   eat() {
     if (this.pos.x === food.x && this.pos.y === food.y) {
       food.newPosition();
-
       this.length += 1;
     }
   }
