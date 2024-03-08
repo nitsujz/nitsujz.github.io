@@ -17,7 +17,7 @@ function setup() {
   //set up screen
   createCanvas(1000, 1000);
   rectMode(CENTER);
-  frameRate(10);
+  frameRate(15);
 
   gridSize = 20;
   space = width/gridSize;
