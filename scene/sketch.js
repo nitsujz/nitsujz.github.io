@@ -7,6 +7,7 @@ let space;
 let snake;
 let dir;
 let food;
+let score;
 
 document.addEventListener("keydown", function(k) {
   dir = k.code;
@@ -17,26 +18,32 @@ function setup() {
   //set up screen
   createCanvas(1000, 1000);
   rectMode(CENTER);
-  frameRate(15);
+  frameRate(10);
 
   gridSize = 20;
   space = width/gridSize;
 
   snake = new Snake();
   food = new Food();
+
 }
 
 function draw() {
   background("black");
 
   //call character functions
-  snake.move();
-  snake.edges();
-  snake.eat();
-  snake.tail();
-  snake.show();
-  food.show();
-  
+  if (!snake.dead) {
+    snake.move();
+    snake.edges();
+    snake.eat();
+    snake.tail();
+    snake.show();
+    food.show();  
+  }
+  else {
+    snake.dead;
+  }
+
   noFill();
   noStroke();
   rect(width/2, height/2, width, height);
@@ -72,6 +79,11 @@ class Snake{
   edges() {
     if (this.pos.x === 0 || this.pos.x === width || this.pos.y === 0 || this.pos.y === height) {
       this.dead = true;
+    }
+    for (let i = 0; i < this.oldPos.length -1; i++) {
+      if (this.pos.x === this.oldPos[i].x && this.pos.y === this.oldPos[i].y) {
+        this.dead = true;
+      }
     }
   }
 

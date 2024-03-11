@@ -36,6 +36,7 @@ function draw() {
 }
 
 function showInstructions() {
+  background(255);
   fill("white");
   textSize(42);
   textAlign(CENTER);
