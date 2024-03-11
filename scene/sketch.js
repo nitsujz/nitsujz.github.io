@@ -7,14 +7,12 @@ let space;
 let snake;
 let dir;
 let food;
-let score;
 
 document.addEventListener("keydown", function(k) {
   dir = k.code;
 });
 
 function setup() {
-
   //set up screen
   createCanvas(1000, 1000);
   rectMode(CENTER);
@@ -25,7 +23,6 @@ function setup() {
 
   snake = new Snake();
   food = new Food();
-
 }
 
 function draw() {
@@ -42,11 +39,21 @@ function draw() {
   }
   else {
     snake.dead;
+    background("black");
+    textSize(100);
+    text("Game over, width/2, height/2");
+    textSize(70);
+    text("You're dead, width/2, (height/2) + 50");
   }
 
   noFill();
   noStroke();
   rect(width/2, height/2, width, height);
+}
+function keyPressed() {
+  if (snake.dead === true) {
+    snake.dead = !snake.dead;
+  }
 }
 
 //character
@@ -60,7 +67,7 @@ class Snake{
 
     this.dead = false;
   }
-
+  //use arrows to move snake
   move() {
     if (dir === "ArrowRight") {
       this.pos.x += space;
@@ -76,6 +83,7 @@ class Snake{
     }
   }
 
+  //make snake dies when it gets out of screen
   edges() {
     if (this.pos.x === 0 || this.pos.x === width || this.pos.y === 0 || this.pos.y === height) {
       this.dead = true;
@@ -87,6 +95,7 @@ class Snake{
     }
   }
 
+  //eat the apple 
   eat() {
     if (this.pos.x === food.x && this.pos.y === food.y) {
       food.newPosition();
@@ -94,6 +103,7 @@ class Snake{
     }
   }
 
+  //make the snake longer after eating the apples
   tail() {
     this.oldPos.push(this.pos.copy());
 
@@ -117,6 +127,7 @@ class Food {
     this.y = floor(random(1, gridSize)) * space;
   }
 
+  //make apples randomly respawn
   newPosition() {
     let newX = floor(random(1, gridSize)) * space;
     let newY = floor(random(1, gridSize)) * space;
@@ -133,7 +144,6 @@ class Food {
       }
     }
   }
-
   show() {
     noStroke();
     fill(255, 0, 0);
