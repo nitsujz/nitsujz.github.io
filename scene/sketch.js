@@ -39,21 +39,11 @@ function draw() {
   }
   else {
     snake.dead;
-    background("black");
-    textSize(100);
-    text("Game over, width/2, height/2");
-    textSize(70);
-    text("You're dead, width/2, (height/2) + 50");
   }
 
   noFill();
   noStroke();
   rect(width/2, height/2, width, height);
-}
-function keyPressed() {
-  if (snake.dead === true) {
-    snake.dead = !snake.dead;
-  }
 }
 
 //character
