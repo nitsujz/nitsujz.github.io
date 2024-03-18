@@ -5,6 +5,7 @@
 - [Bouncing Ball](bouncingball)
 - [Collision](collision)
 - [Arrays and Objects](circles)
+- [Terrain Generation](terrain)
 
 ## Projects
 - [Interactive Scene](scene)
