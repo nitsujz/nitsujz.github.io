@@ -1,7 +1,5 @@
-// Array
+// Arrays and Object Notation
 // Justin Nguyen
-
-
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -9,4 +7,5 @@ function setup() {
 
 function draw() {
   background(220);
+  
 }
