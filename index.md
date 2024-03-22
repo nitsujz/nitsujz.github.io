@@ -6,6 +6,7 @@
 - [Collision](collision)
 - [Arrays and Objects](circles)
 - [Terrain Generation](terrain)
+- [Translate/Rotation](translate)
 
 ## Projects
 - [Interactive Scene](scene)
