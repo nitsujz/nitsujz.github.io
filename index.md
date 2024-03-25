@@ -7,6 +7,7 @@
 - [Arrays and Objects](circles)
 - [Terrain Generation](terrain)
 - [Translate/Rotation](translate)
+- [Bubble Movement](bubble)
 
 ## Projects
 - [Interactive Scene](scene)
