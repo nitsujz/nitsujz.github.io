@@ -1,9 +1,7 @@
 // Arrays and Object Notation
 // Justin Nguyen
 
-let space = 40;
-let radius = space/2;
-let number = 2;
+let theSpheres = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -14,20 +12,15 @@ function draw() {
 
   orbitControl();
 
-  stroke(0);
-  for (let i=0; i<number; i++) {
-    for (let j=0; j<number; j++) {
-      for (let k=0; k<number; k++) {
-        push();
-        let x = i*space;
-        let y = j*space;
-        let z = k*space;
-        translate(x, y, z);
-        sphere(radius);
-        pop();
-      }
-    }
-  }
-  stroke(255, 0, 0);
-  sphere(radius);
+}
+function makeSpheres() {
+  let spheres = {
+    radius: random(50, 100),
+    x: width/2,
+    y: height/2,
+    r: random(255),
+    g: random(255),
+    b: random(255),
+  };
+  theSpheres.push(spheres);
 }
