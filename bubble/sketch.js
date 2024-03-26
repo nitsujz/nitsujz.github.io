@@ -12,7 +12,7 @@ function setup() {
   }
 
   //spawn new bubble every half second
-  window.setInterval(spawnBubble, 50);
+  window.setInterval(spawnBubble, 700);
 }
 
 function draw() {
@@ -25,7 +25,7 @@ function draw() {
 
 function spawnBubble() {
   let someBubble = {
-    size: random(10, 30),
+    size: random(30, 50),
     x: random(width),
     y: random(height),
     speed: 3,
@@ -35,7 +35,7 @@ function spawnBubble() {
     alpha: random(255),
     timeX: random(100000000),
     timeY: random(100000000), 
-    deltaTime: 0.01,
+    deltaTime: 0.001,
   };
   theBubbles.push(someBubble);
 }
@@ -82,5 +82,26 @@ function moveBubbleWithNoise() {
     //increment timeX and timeY
     bubble.timeX += bubble.deltaTime;
     bubble.timeY += bubble.deltaTime;
+  }
+}
+
+function mousePressed() {
+  //did you click on a bubble?
+  for (let i = theBubbles.length - 1; i >= 0; i--) {
+    if (clickedInBubble(mouseX, mouseY, theBubbles[i])) {
+      //kill it 
+      theBubbles.splice(i, 1);
+    }
+  }
+}
+
+function clickedInBubble(x, y, someBubble) {
+  let distanceAway = dist(x, y, someBubble.x, someBubble.y);
+  let radius = someBubble.size / 2;
+  if (distanceAway < radius) {
+    return true;
+  }
+  else {
+    return false;
   }
 }
