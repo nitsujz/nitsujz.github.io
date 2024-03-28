@@ -8,7 +8,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   
   createSlider(100, 30);
-  slider.position(100, 30);
+  slider.position(50, 50);
   slider.size(100);
 
   makeSpheres();
@@ -16,10 +16,11 @@ function setup() {
 
 function draw() {
   background(220);
+
   showSpheres();
   orbitControl();
+
   let a = slider.value();
-  
 }
 
 function makeSpheres() {
@@ -31,7 +32,6 @@ function makeSpheres() {
     g: random(255),
     b: random(255),
     alpha: random(255),
-
   };
   theSpheres.push(someSpheres);
 }
