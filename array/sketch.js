@@ -2,14 +2,18 @@
 // Justin Nguyen
 
 let theSpheres = [];
-let slider;
+let sizeSlider;
+let colorSlider;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  
-  createSlider(100, 30);
-  slider.position(50, 50);
-  slider.size(100);
+  sizeSlider = createSlider(0, 100);
+  sizeSlider.position(10, 10);
+  sizeSlider.size(150);
+
+  colorSlider = createSlider(0, 255);
+  colorSlider.position(200, 10);
+  colorSlider.size(150);
 
   makeSpheres();
 }
@@ -17,28 +21,27 @@ function setup() {
 function draw() {
   background(220);
 
+  let size = sizeSlider.value();
+  let color = colorSlider.value();
   showSpheres();
   orbitControl();
-
-  let a = slider.value();
 }
 
 function makeSpheres() {
   let someSpheres = {
-    radius: random(40, 70),
+    radius: random(0, 100),
     x: width/2,
     y: height/2,
     r: random(255),
     g: random(255),
     b: random(255),
-    alpha: random(255),
   };
   theSpheres.push(someSpheres);
 }
 
 function showSpheres() {
   for (let spheres in theSpheres) {
-    fill(spheres.r, spheres.g, spheres.b);
-    sphere(spheres.radius, spheres.x, spheres.y);
+    stroke(colorSlider.value());
+    sphere(sizeSlider.value(), spheres.x, spheres.y);
   }
 }
