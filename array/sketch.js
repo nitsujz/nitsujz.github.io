@@ -39,10 +39,9 @@ function makeSpheres() {
   theSpheres.push(someSpheres);
 }
 
-
+//showing the spheres
 function showSpheres() {
   for (let spheres in theSpheres) {
-
     stroke(colorSlider.value());
     sphere(sizeSlider.value(), spheres.x, spheres.y);
   }
