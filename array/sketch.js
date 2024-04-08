@@ -7,6 +7,7 @@ let colorSlider;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
+  //creatie sliders for size and color of the sphere
   sizeSlider = createSlider(0, 100);
   sizeSlider.position(10, 10);
   sizeSlider.size(150);
@@ -23,6 +24,7 @@ function draw() {
 
   let size = sizeSlider.value();
   let color = colorSlider.value();
+
   showSpheres();
   orbitControl();
 }
@@ -35,6 +37,7 @@ function makeSpheres() {
     r: random(255),
     g: random(255),
     b: random(255),
+    alpha: random(255),
   };
   theSpheres.push(someSpheres);
 }
@@ -42,7 +45,8 @@ function makeSpheres() {
 //showing the spheres
 function showSpheres() {
   for (let spheres in theSpheres) {
-    stroke(colorSlider.value());
+    fill(spheres.r.colorSlider.value(), spheres.g.colorSlider.value(), spheres.b.colorSlider.value());
     sphere(sizeSlider.value(), spheres.x, spheres.y);
   }
 }
+
