@@ -8,7 +8,7 @@
 - [Terrain Generation](terrain)
 - [Translate/Rotation](translate)
 - [Bubble Movement](bubble)
-- [2D Grid](10-grid)
+- [2D Grid](grid)
 
 ## Projects
 - [Interactive Scene](scene)

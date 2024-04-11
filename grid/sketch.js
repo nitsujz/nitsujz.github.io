@@ -1,15 +1,17 @@
 // 2D Grid
+// Dan Schellenberg
+// Apr 9, 2024
 
-//use this for a hard coding level
+// if you are hard-coding a level, I'd use something like this
 
 // let grid = [[1, 0, 0, 1],
 //             [0, 1, 0, 1],
-//             [0, 0, 0, 1],
 //             [1, 1, 0, 0],
 //             [1, 0, 1, 1],
 //             [0, 0, 0, 1],
 //             [0, 0, 1, 1],
-//             [0, 1, 0, 1]];
+//             [0, 1, 0, 1],
+//             [0, 0, 0, 1]];
 
 let grid;
 let cellSize;
@@ -18,10 +20,11 @@ const GRID_SIZE = 10;
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  //randomizeing the grid
+  //if randomizing the grid, do this:
   grid = generateRandomGrid(GRID_SIZE, GRID_SIZE);
-
-  cellSize  = height/grid.length;
+  
+  //this is dumb -- should check if this is the right size!
+  cellSize = height/grid.length;
 }
 
 function draw() {
@@ -43,11 +46,34 @@ function mousePressed() {
   let x = Math.floor(mouseX/cellSize);
   let y = Math.floor(mouseY/cellSize);
 
+  // console.log(x, y);
+
+  //fix this so we check if we fell off the top or left sides...
+
+  //don't fall off the edge of the grid...
   if (x < GRID_SIZE && y < GRID_SIZE) {
     toggleCell(x, y);
   }
 
-  
+  // is moving one cell to right still on the grid?
+  if (x + 1 < GRID_SIZE && y < GRID_SIZE) {
+    toggleCell(x + 1, y);
+  }
+
+  // is moving one cell to left still on the grid?
+  if (x - 1 < GRID_SIZE && y < GRID_SIZE) {
+    toggleCell(x - 1, y);
+  }
+
+  // is moving one cell to up still on the grid?
+  if (x < GRID_SIZE && y + 1 < GRID_SIZE) {
+    toggleCell(x, y + 1);
+  }
+
+  // is moving one cell to down still on the grid?
+  if (x < GRID_SIZE && y - 1 < GRID_SIZE) {
+    toggleCell(x, y - 1);
+  }
 }
 
 function toggleCell(x, y) {
@@ -76,10 +102,10 @@ function displayGrid() {
 
 function generateRandomGrid(cols, rows) {
   let emptyArray = [];
-  
   for (let y = 0; y < rows; y++) {
     emptyArray.push([]);
     for (let x = 0; x < cols; x++) {
+      //half the time, be a 1. Other half, be a 0.
       if (random(100) < 50) {
         emptyArray[y].push(0);
       }
