@@ -1,6 +1,4 @@
 // 2D Grid
-// Dan Schellenberg
-// Apr 9, 2024
 
 // if you are hard-coding a level, I'd use something like this
 
