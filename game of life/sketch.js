@@ -48,7 +48,7 @@ function windowResized() {
 function draw() {
   background(220);
 
-  if (isAutoPlayOn && frameCount % 5  === 0) {
+  if (isAutoPlayOn && frameCount % 7  === 0) {
     grid = updateGrid();
   }
 
