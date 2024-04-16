@@ -1,6 +1,5 @@
 // Character in 2D Grid
-// Dan Schellenberg
-// Apr 15, 2024
+
 
 let grid;
 let cellSize;
@@ -14,10 +13,15 @@ let player = {
 };
 let grassImg;
 let pavingImg;
+let backgroundMusic;
+let cantWalkSound;
+let state = "starting screen";
 
 function preload() {
   grassImg = loadImage("grass1.png");
   pavingImg = loadImage("paving 2.png");
+  backgroundMusic = loadSound("Cyberpunk Moonlight Sonata.mp3");
+  cantWalkSound = loadSound("slime.wav");
 }
 
 
@@ -53,8 +57,14 @@ function windowResized() {
 }
 
 function draw() {
-  background(220);
-  displayGrid();
+  if (state === "start screen") {
+    background("black");
+  }
+  else if (state === "game") {
+    background(220);
+    displayGrid();
+  }
+
 }
 
 function keyPressed() {
@@ -81,6 +91,11 @@ function keyPressed() {
   if (key === "a") {   //left
     movePlayer(player.x - 1, player.y + 0); //-1 on x axis, 0 on y axis
   }
+
+  if (key === " " && state === "start screen") {
+    state = "game";
+    backgroundMusic.play();
+  }
 }
 
 function movePlayer(x, y) {
@@ -100,6 +115,9 @@ function movePlayer(x, y) {
 
     //move the player to the new spot
     grid[player.y][player.x] = PLAYER;
+  }
+  else {
+    cantWalkSound.play();
   }
 }
 
