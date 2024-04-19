@@ -14,7 +14,7 @@ const grid =
   [0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],];
+];
 
 const blocks = {
   I: [
@@ -24,6 +24,12 @@ const blocks = {
   L: [
     [1, 0],
     [1, 0],
+    [1, 1],
+  ],
+
+  U: [
+    [0, 1],
+    [0, 1],
     [1, 1],
   ],
 
@@ -75,6 +81,11 @@ function displayGrid() {
 }
 
 function blocksFall() {
+  let x = random(width);
+  let y = height;
 
+  for (let i = 0; i < 101; i++) {
+    //spawn and move blocks down
+
+  }
 }
- 
