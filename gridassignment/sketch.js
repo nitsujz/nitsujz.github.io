@@ -52,6 +52,8 @@ const blocks = {
     [0, 1, 1],
     [1, 1, 0],
   ],
+
+  
 };
 
 let cellSize;
@@ -87,5 +89,6 @@ function blocksFall() {
   for (let i = 0; i < 101; i++) {
     //spawn and move blocks down
 
+    ;
   }
 }
