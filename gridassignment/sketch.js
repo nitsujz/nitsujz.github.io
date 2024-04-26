@@ -52,7 +52,6 @@ const blocks = {
     [0, 1, 1],
     [1, 1, 0],
   ],
-
 };
 
 let cellSize;
@@ -67,12 +66,11 @@ function setup() {
 
 function draw() {
   background("220");
-
-  displayGrid();
-  blocksFall();
+  showGrid();
+  spawnBlocksRandomly();
 }
 
-function displayGrid() {
+function showGrid() {
   for (let y = 0; y < grid.length; y++) {
     for (let x = 0; x < grid[y].length; x++) {
       fill("black");
@@ -81,12 +79,14 @@ function displayGrid() {
   }
 }
 
-function blocksFall() {
+function spawnBlocksRandomly() {
   let x = random(width);
   let y = height;
 
-  for (let i = 0; i < 101; i++) {
-    //spawn and move blocks down
-    
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid.length; j++) {
+      fill("white");
+      
+    }
   }
 }
