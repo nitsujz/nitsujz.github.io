@@ -54,20 +54,32 @@ const blocks = {
   ],
 };
 
+let currentBlock;
 let cellSize;
-const GRID_SIZE = 10;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-  noStroke();
-  cellSize = height/grid.length;
+  cellSize = height / grid.length;
 }
 
 function draw() {
-  background("220");
+  background(220);
   showGrid();
-  spawnBlocksRandomly();
+  
+  currentBlock.update();
+  currentBlock.draw();
+}
+
+function keyPressed() {
+  if (keyCode === LEFT_ARROW) {
+    currentBlock.moveLeft();
+  }
+  else if (keyCode === RIGHT_ARROW) {
+    currentBlock.moveRight();
+  }
+  else if (keyCode === DOWN_ARROW) {
+    currentBlock.moveDown();
+  }
 }
 
 function showGrid() {
@@ -79,14 +91,35 @@ function showGrid() {
   }
 }
 
-function spawnBlocksRandomly() {
-  let x = random(width);
-  let y = height;
+class Block {
+  constructor(shape) {
+    this.shape = shape;
+    this.x = Math.floor(cellSize / 2) - Math.floor(shape[0].length / 2); 
+    this.y = 0; 
+  }
 
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid.length; j++) {
-      fill("white");
-      
+
+  draw() {
+    for (let y = 0; y < this.shape.length; y++) {
+      for (let x = 0; x < this.shape[y].length; x++) {
+        if (this.shape[y][x]) {
+          fill(this.color);
+          square((this.x + x) * cellSize, (this.y + y) * cellSize, cellSize);
+        }
+      }
+    }
+  }
+
+  update() {
+    this.moveDown();
+  }
+  addToGrid() {
+    for (let y = 0; y < this.shape.length; y++) {
+      for (let x = 0; x < this.shape[y].length; x++) {
+        if (this.shape[y][x]) {
+          grid[this.y + y][this.x + x] = 1;
+        }
+      }
     }
   }
 }
