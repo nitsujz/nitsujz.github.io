@@ -67,17 +67,19 @@ function draw() {
   showGrid();
   
   currentBlock.update();
-  currentBlock.draw();
+  currentBlock.show();
+  currentBlock.addAnotherBlock();
+
 }
 
 function keyPressed() {
-  if (keyCode === LEFT_ARROW) {
+  if (key === "w") {
     currentBlock.moveLeft();
   }
-  else if (keyCode === RIGHT_ARROW) {
+  else if (key === "d") {
     currentBlock.moveRight();
   }
-  else if (keyCode === DOWN_ARROW) {
+  else if (key === "s") {
     currentBlock.moveDown();
   }
 }
@@ -91,19 +93,20 @@ function showGrid() {
   }
 }
 
+//make the block
 class Block {
-  constructor(shape) {
+  constructor(shape, color) {
     this.shape = shape;
     this.x = Math.floor(cellSize / 2) - Math.floor(shape[0].length / 2); 
     this.y = 0; 
+    this.color = color;
   }
 
-
-  draw() {
+  show() {
     for (let y = 0; y < this.shape.length; y++) {
       for (let x = 0; x < this.shape[y].length; x++) {
         if (this.shape[y][x]) {
-          fill(this.color);
+          fill("white");
           square((this.x + x) * cellSize, (this.y + y) * cellSize, cellSize);
         }
       }
@@ -112,8 +115,10 @@ class Block {
 
   update() {
     this.moveDown();
+    this.color = random("red", "blue", "green", "yellow", "white");
   }
-  addToGrid() {
+
+  addAnotherBlock() {
     for (let y = 0; y < this.shape.length; y++) {
       for (let x = 0; x < this.shape[y].length; x++) {
         if (this.shape[y][x]) {
