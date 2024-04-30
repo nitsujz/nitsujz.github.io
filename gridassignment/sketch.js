@@ -1,6 +1,10 @@
-// tetris
-// Justin Nguyen
+//Grid assignment
+//Justin Nguyen
 
+//I tried to make the game Tetris but it wouldn't show.
+
+
+//make grid and blocks
 const grid = 
 [[0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
@@ -60,40 +64,55 @@ let cellSize;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   cellSize = height / grid.length;
+  currentBlock = generateRandomBlock();
 }
 
 function draw() {
   background(220);
   showGrid();
   
-  currentBlock.update();
-  currentBlock.show();
-  currentBlock.addAnotherBlock();
 
+  if (currentBlock) {
+    currentBlock.update();
+    currentBlock.show();
+    currentBlock.addAnotherBlock();
+  }
 }
 
 function keyPressed() {
-  if (key === "w") {
-    currentBlock.moveLeft();
-  }
-  else if (key === "d") {
-    currentBlock.moveRight();
-  }
-  else if (key === "s") {
-    currentBlock.moveDown();
+  if (currentBlock) {
+    if (key === "w") {
+      currentBlock.moveLeft();
+    }
+    else if (key === "d") {
+      currentBlock.moveRight();
+    }
+    else if (key === "s") {
+      currentBlock.moveDown();
+    }
   }
 }
 
+//use to create random block
+function generateRandomBlock() {
+  const blockTypes = Object.keys(blocks);
+  const randomType = blockTypes[Math.floor(Math.random() * blockTypes.length)];
+  const randomShape = blocks[randomType];
+  return new Block(randomShape);
+}
+
+//show grid
 function showGrid() {
   for (let y = 0; y < grid.length; y++) {
     for (let x = 0; x < grid[y].length; x++) {
-      fill("black");
+      fill(grid[y][x] === 1 ? "white" : "black");
       square(x * cellSize, y * cellSize, cellSize);
     }
   }
 }
 
-//make the block
+
+//make block
 class Block {
   constructor(shape, color) {
     this.shape = shape;
@@ -113,9 +132,10 @@ class Block {
     }
   }
 
+
   update() {
     this.moveDown();
-    this.color = random("red", "blue", "green", "yellow", "white");
+    this.color = color(random(255), random(255), random(255));
   }
 
   addAnotherBlock() {
@@ -127,4 +147,17 @@ class Block {
       }
     }
   }
+
+  moveDown() {
+    this.y++;
+  }
+
+  moveLeft() {
+    this.x--;
+  }
+
+  moveRight() {
+    this.x++;
+  }
 }
+  
