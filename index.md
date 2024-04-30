@@ -9,6 +9,7 @@
 - [Translate/Rotation](translate)
 - [Bubble Movement](bubble)
 - [2D Grid](grid)
+- [Walker OOP](walker)
 
 ## Projects
 - [Interactive Scene](scene)
