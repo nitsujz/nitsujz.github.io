@@ -65,6 +65,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   cellSize = height / grid.length;
   currentBlock = generateRandomBlock();
+  block = new Block();
 }
 
 function draw() {
