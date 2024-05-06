@@ -11,6 +11,7 @@
 - [2D Grid](grid)
 - [Walker OOP](walker)
 - [Fireworks](firework)
+- [Node](node)
 
 ## Projects
 - [Interactive Scene](scene)
