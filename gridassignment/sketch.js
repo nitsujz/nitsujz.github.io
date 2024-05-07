@@ -64,15 +64,15 @@ let cellSize;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   cellSize = height / grid.length;
+  let block = new Block();
   currentBlock = generateRandomBlock();
-  block = new Block();
+  
 }
 
 function draw() {
   background(220);
   showGrid();
   
-
   if (currentBlock) {
     currentBlock.update();
     currentBlock.show();
@@ -106,12 +106,11 @@ function generateRandomBlock() {
 function showGrid() {
   for (let y = 0; y < grid.length; y++) {
     for (let x = 0; x < grid[y].length; x++) {
-      fill(grid[y][x] === 1 ? "white" : "black");
+      fill(grid[y][x] === 1 ? "black" : "white");
       square(x * cellSize, y * cellSize, cellSize);
     }
   }
 }
-
 
 //make block
 class Block {
@@ -133,7 +132,6 @@ class Block {
     }
   }
 
-
   update() {
     this.moveDown();
     this.color = color(random(255), random(255), random(255));
@@ -152,13 +150,10 @@ class Block {
   moveDown() {
     this.y++;
   }
-
   moveLeft() {
     this.x--;
   }
-
   moveRight() {
     this.x++;
   }
 }
-  
